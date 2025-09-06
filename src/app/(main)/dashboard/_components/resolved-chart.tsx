@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Tambahkan CardHeader & CardTitle jika perlu
+import { Card, CardContent } from "@/components/ui/card"; // Tambahkan CardHeader & CardTitle jika perlu
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"; // Import dari Shadcn UI
 import { Bar } from "react-chartjs-2";
 import {  createHorizontalBarChartOptions } from "../_lib/horizontalbarchart-option"; // Pastikan path ini benar

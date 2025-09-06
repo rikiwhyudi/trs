@@ -1,10 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Bar, Doughnut, Pie } from "react-chartjs-2";
-import { Card } from "@/components/ui/card";
 import DoughnutChartPIC from "./pic-chart";
-import { registerChartBase } from "@/lib/chart-register";
 import VerticalBarChartStatus from "./status-chart";
 import VerticalBarChartRegional from "./regional-chart";
 import PieChartOnCheck from "./oncheck-chart";

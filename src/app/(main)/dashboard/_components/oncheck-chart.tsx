@@ -2,9 +2,6 @@ import { Card } from "@/components/ui/card";
 import { Pie } from "react-chartjs-2";
 import { createPieChartOptions } from "../_lib/piechart-option";
 
-
-
-
 // --- Data Statis yang Anda Berikan ---
 const labels = ["RW", "SYM", "DRS", "LNG"];
 const dataValues = [53, 43, 41, 64]; // Mengubah nama variabel agar tidak bentrok dengan prop 'data' di ChartJS

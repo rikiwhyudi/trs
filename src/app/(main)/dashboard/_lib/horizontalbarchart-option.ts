@@ -11,11 +11,11 @@ export const createHorizontalBarChartOptions = (maxValue: number, title : string
       text: title,
       padding: { top: 10, bottom: 20 },
     },
-    datalabels: {
-      anchor: "end",
-      align: "right",
-      formatter: (value: number) => value,
-    },
+    // datalabels: {
+    //   anchor: "end",
+    //   align: "right",
+    //   formatter: (value: number) => value,
+    // },
   },
   scales: {
     x: {
