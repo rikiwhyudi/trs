@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   ColumnDef,
@@ -19,10 +19,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import { DataTablePagination } from "./data-table-pagination"; // Pastikan path ini benar
+import { DataTablePagination } from "./data-table-pagination";
 import React from "react";
-
-// --- Import Komponen untuk Filter Status ---
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,21 +29,22 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button"; // Pastikan Button diimpor
-import { ChevronDownIcon } from "lucide-react"; // Atau ikon lain dari lucide-react, misalnya 'Filter'
+import { Button } from "@/components/ui/button";
+import { ChevronDownIcon } from "lucide-react";
+import { TableSkeleton } from "./table-skeleton"; // Import the skeleton
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  // Tambahkan prop opsional untuk daftar status yang tersedia
-  // Ini akan membuat filter lebih fleksibel
+  isLoading?: boolean; // Add isLoading prop
   availableStatuses?: string[];
 }
 
 export function TicketsTable<TData, TValue>({
   columns,
   data,
-  availableStatuses = ["Pending", "Active", "Resolved", "Closed"], // Default statuses
+  isLoading = false, // Set default value
+  availableStatuses = ["Pending", "Active", "Resolved", "Closed"],
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -61,23 +60,24 @@ export function TicketsTable<TData, TValue>({
     state: {
       columnFilters,
     },
-    // --- PERUBAHAN DI SINI: Atur Ukuran Halaman Awal ---
     initialState: {
       pagination: {
-        pageSize: 5, // Mengatur 7 baris per halaman
+        pageSize: 5,
       },
     },
   });
 
-  // Fungsi untuk mengatur filter status
   const setStatusFilter = (status: string | null) => {
     table.getColumn("status")?.setFilterValue(status);
   };
 
+  // if (isLoading) {
+  //   return <TableSkeleton columnCount={columns.length} />;
+  // }
+
   return (
     <div className="flex flex-col border px-4 pb-3 bg-card text-card-foreground rounded-xl shadow-sm overflow-hidden">
       <div className="flex items-center py-4">
-        {/* --- Input Filter Email --- */}
         <Input
           placeholder="Search No. Ticket..."
           value={(table.getColumn("no_ticket")?.getFilterValue() as string) ?? ""}
@@ -86,8 +86,6 @@ export function TicketsTable<TData, TValue>({
           }
           className="max-w-sm w-[250px]"
         />
-
-        {/* --- PERUBAHAN DI SINI: Tombol Filter Berdasarkan Status --- */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
@@ -97,11 +95,9 @@ export function TicketsTable<TData, TValue>({
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Filter berdasarkan status</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            {/* Opsi untuk menghapus filter status */}
             <DropdownMenuItem onClick={() => setStatusFilter(null)}>
               Semua Status
             </DropdownMenuItem>
-            {/* Looping untuk setiap status yang tersedia */}
             {availableStatuses.map((status) => (
               <DropdownMenuItem key={status} onClick={() => setStatusFilter(status)}>
                 {status}
@@ -109,7 +105,6 @@ export function TicketsTable<TData, TValue>({
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
-        {/* --- AKHIR PERUBAHAN Filter Status --- */}
       </div>
 
       <div className="rounded-md border mb-3">

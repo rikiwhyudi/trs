@@ -10,6 +10,7 @@ export function createPieChartOptions(title: string): ChartOptions<"pie"> {
         display: true,
         text: title,
         align: "center" as const,
+        padding: { top: 0, bottom: 20 },
       },
       legend: {
         display: true,

@@ -9,7 +9,7 @@ export const createHorizontalBarChartOptions = (maxValue: number, title : string
     title: {
       display: true,
       text: title,
-      padding: { top: 10, bottom: 20 },
+      padding: { top: 0, bottom: 20 },
     },
     // datalabels: {
     //   anchor: "end",
@@ -20,15 +20,15 @@ export const createHorizontalBarChartOptions = (maxValue: number, title : string
   scales: {
     x: {
       type: "linear",
-      display: false,
-      grid: { display: false },
-      ticks: { display: false },
+      display: true,
+      grid: { display: true, color: "rgba(200,200,200,0.2)" },
+      ticks: { display: true, stepSize: 1 },
       max: Math.ceil(maxValue * 1.15),
     },
     y: {
       type: "category",
       display: true,
-      grid: { display: false },
+      grid: { display: true, color: "rgba(200,200,200,0.2)" },
       ticks: {
         display: true,
         autoSkip: false,

@@ -8,7 +8,7 @@ import React from "react";
 
 // Fungsi pembuat data dummy
 const generateChartData = (chartIndex: number) => {
-  const data = Array.from({ length: 20 }, (_, i) => ({
+  const data = Array.from({ length: 100 }, (_, i) => ({
     name: `Location ${chartIndex}-${i + 1}`,
     value: Math.floor(Math.random() * 10) + 1,
   })).sort((a, b) => b.value - a.value);
@@ -28,7 +28,7 @@ const createChartJsData = (data: { name: string; value: number }[]) => ({
       label: "Jumlah Tiket",
       data: data.map((item) => item.value),
       backgroundColor: "oklch(0.6 0.118 184.704)",
-      borderRadius: 4,
+      borderRadius: 0,
       borderWidth: 0, // Border antar segmen
       hoverOffset: 8, // Efek sedikit bergeser saat hover
       // barThickness: 35,
@@ -55,7 +55,7 @@ export default function LocationBarChartHorizontal() {
     // Jika komponen ini akan ditempatkan dalam grid lain, hapus div grid ini.
     <Card className="flex flex-col bg-card text-card-foreground rounded-xl p-6 shadow-sm h-[300px]">
       <ScrollArea className="w-full h-[250px]">
-        {" "}
+
         {/* Tinggi ScrollArea yang lebih realistis */}
         <CardContent>
           {/* ScrollArea akan membungkus chart */}
@@ -75,3 +75,4 @@ export default function LocationBarChartHorizontal() {
     </Card>
   );
 }
+
